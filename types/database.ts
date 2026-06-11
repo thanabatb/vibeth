@@ -33,6 +33,7 @@ export interface Database {
           is_active: boolean
           source: 'scraped' | 'submitted'
           source_fb_comment_url: string | null
+          scraped_by: string | null
           created_at: string
           updated_at: string
         }
