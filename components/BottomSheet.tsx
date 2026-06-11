@@ -136,6 +136,7 @@ export default function BottomSheet({
               href={project.url}
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() => fetch(`/api/projects/${project.id}/view`, { method: 'POST' })}
               className="flex items-center justify-center gap-2 py-3 rounded-xl bg-white/[0.06] border border-white/[0.1] text-white font-medium text-sm hover:bg-white/[0.1] transition-colors"
             >
               เปิดเว็บ

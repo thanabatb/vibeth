@@ -48,9 +48,12 @@ async function getProjects(params: SearchParams) {
 
   if (sort === 'az') {
     query = query.order('name', { ascending: true })
+  } else if (sort === 'new') {
+    query = query.order('created_at', { ascending: false })
   } else {
+    // hot = most viewed
     query = query
-      .order('owner_id', { ascending: false, nullsFirst: false })
+      .order('view_count', { ascending: false })
       .order('created_at', { ascending: false })
   }
 

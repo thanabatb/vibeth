@@ -34,6 +34,7 @@ export interface Database {
           source: 'scraped' | 'submitted'
           source_fb_comment_url: string | null
           scraped_by: string | null
+          view_count: number
           created_at: string
           updated_at: string
         }
