@@ -22,8 +22,16 @@ const config: Config = {
         },
       },
       screens: {
-        // Mobile-first: grid only above 640px
         sm: "640px",
+      },
+      animation: {
+        'slide-up': 'slideUp 0.28s cubic-bezier(0.32,0.72,0,1)',
+      },
+      keyframes: {
+        slideUp: {
+          '0%': { transform: 'translateY(100%)' },
+          '100%': { transform: 'translateY(0)' },
+        },
       },
     },
   },

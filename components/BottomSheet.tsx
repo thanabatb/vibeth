@@ -61,9 +61,8 @@ export default function BottomSheet({
 
       {/* Sheet */}
       <div
-        className="relative bg-[#0f1117] rounded-t-2xl border border-white/[0.1] border-b-0 max-h-[85vh] overflow-y-auto animate-slide-up"
+        className="relative bg-[#0f1117] rounded-t-2xl border border-white/[0.1] border-b-0 max-h-[85vh] overflow-y-auto animate-slide-up motion-reduce:animate-none"
         onClick={e => e.stopPropagation()}
-        style={{ animation: 'slideUp 0.25s cubic-bezier(0.32,0.72,0,1)' }}
       >
         {/* Handle */}
         <div className="flex justify-center pt-3 pb-1">
@@ -93,7 +92,7 @@ export default function BottomSheet({
           {/* PDPA disclaimer for scraped */}
           {project.source === 'scraped' && (
             <div className="absolute bottom-0 left-0 right-0 bg-black/70 px-3 py-2">
-              <p className="text-[10px] text-amber-400/80 leading-tight">
+              <p className="text-xs text-amber-400/80 leading-tight">
                 ข้อมูลนี้รวบรวมจากคอมเมนต์สาธารณะใน Facebook
               </p>
             </div>
@@ -177,13 +176,6 @@ export default function BottomSheet({
         {/* Safe area */}
         <div className="h-6" />
       </div>
-
-      <style jsx>{`
-        @keyframes slideUp {
-          from { transform: translateY(100%); }
-          to { transform: translateY(0); }
-        }
-      `}</style>
     </div>
   )
 }

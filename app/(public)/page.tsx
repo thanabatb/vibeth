@@ -83,21 +83,21 @@ export default async function GalleryPage({ searchParams }: { searchParams: Sear
           <p className="mt-3 text-gray-400 text-sm sm:text-base leading-relaxed">
             พอร์ตโฟลิโอสำหรับ vibe coders ไทย · claim โปรเจกต์ของคุณ · แชร์ผลงาน
           </p>
-          <div className="mt-6 flex gap-6">
+          <div className="mt-8 flex gap-8">
             {[
               { key: 'total_projects', label: 'projects' },
               { key: 'total_builders', label: 'builders' },
               { key: 'total_categories', label: 'categories' },
             ].map(({ key, label }) => (
               <div key={key}>
-                <div className="text-2xl sm:text-3xl font-bold tabular-nums">
+                <div className="text-3xl sm:text-4xl font-bold tabular-nums">
                   {stats[key] ?? 0}
                 </div>
-                <div className="text-xs text-gray-600 mt-0.5">{label}</div>
+                <div className="text-xs text-gray-400 mt-1">{label}</div>
               </div>
             ))}
           </div>
-          <p className="text-[10px] text-gray-700 mt-1">updated daily</p>
+          <p className="text-xs text-gray-500 mt-2">updated daily</p>
         </div>
       </section>
 
@@ -159,7 +159,7 @@ export default async function GalleryPage({ searchParams }: { searchParams: Sear
 
       {/* Footer */}
       <footer className="border-t border-white/[0.06] py-6 px-4 sm:px-6">
-        <div className="max-w-7xl mx-auto flex items-center justify-between text-xs text-gray-700">
+        <div className="max-w-7xl mx-auto flex items-center justify-between text-xs text-gray-500">
           <span>built with <span className="text-amber-400/70">Claude</span></span>
           <span>vibeth.app</span>
         </div>

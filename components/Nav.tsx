@@ -29,21 +29,21 @@ export default function Nav() {
           {user ? (
             <Link
               href="/dashboard"
-              className="text-sm px-3 py-1.5 rounded-lg text-gray-300 hover:text-white hover:bg-white/[0.06] transition-colors"
+              className="text-sm px-3 min-h-[44px] inline-flex items-center rounded-lg text-gray-300 hover:text-white hover:bg-white/[0.06] transition-colors"
             >
               dashboard
             </Link>
           ) : (
             <Link
               href="/auth"
-              className="text-sm px-3 py-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-white/[0.06] transition-colors"
+              className="text-sm px-3 min-h-[44px] inline-flex items-center rounded-lg text-gray-400 hover:text-white hover:bg-white/[0.06] transition-colors"
             >
               sign in
             </Link>
           )}
           <Link
             href="/submit"
-            className="text-sm px-3 py-1.5 rounded-lg bg-amber-400 text-gray-950 font-semibold hover:bg-amber-300 transition-colors"
+            className="text-sm px-3 min-h-[44px] inline-flex items-center rounded-lg bg-amber-400 text-gray-950 font-semibold hover:bg-amber-300 transition-colors"
           >
             + submit project
           </Link>
