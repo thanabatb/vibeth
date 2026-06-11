@@ -1,6 +1,6 @@
 'use client'
 
-import { useEffect } from 'react'
+import { useEffect, useState } from 'react'
 import { Project } from '@/types/database'
 
 type ProjectWithProfile = Project & {
@@ -10,6 +10,10 @@ type ProjectWithProfile = Project & {
 function getDomain(url: string) {
   try { return new URL(url).hostname.replace(/^www\./, '') }
   catch { return url }
+}
+
+function getScreenshotUrl(url: string) {
+  return `https://s0.wp.com/mshots/v1/${encodeURIComponent(url)}?w=640&h=400`
 }
 
 function thumbnailColor(str: string) {
@@ -39,6 +43,8 @@ export default function BottomSheet({
   const domain = getDomain(project.url)
   const [bg, accent] = thumbnailColor(project.url)
   const isClaimed = !!project.owner_id
+  const [imgFailed, setImgFailed] = useState(false)
+  const screenshotUrl = project.screenshot_url || getScreenshotUrl(project.url)
 
   useEffect(() => {
     if (open) document.body.style.overflow = 'hidden'
@@ -69,8 +75,13 @@ export default function BottomSheet({
           className="mx-4 mt-2 rounded-xl h-48 flex items-center justify-center overflow-hidden relative"
           style={{ background: `linear-gradient(135deg, ${bg} 0%, ${bg}66 100%)` }}
         >
-          {project.screenshot_url ? (
-            <img src={project.screenshot_url} alt={project.name} className="w-full h-full object-cover object-top" />
+          {!imgFailed ? (
+            <img
+              src={screenshotUrl}
+              alt={project.name}
+              className="w-full h-full object-cover object-top"
+              onError={() => setImgFailed(true)}
+            />
           ) : (
             <div className="flex flex-col items-center gap-2 text-center px-4">
               <span className="text-5xl font-bold opacity-20" style={{ color: accent }}>

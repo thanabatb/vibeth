@@ -8,6 +8,10 @@ type ProjectWithProfile = Project & {
   profiles?: { username: string; display_name: string } | null
 }
 
+function getScreenshotUrl(url: string) {
+  return `https://s0.wp.com/mshots/v1/${encodeURIComponent(url)}?w=640&h=400`
+}
+
 function thumbnailColor(str: string) {
   const colors = [
     ['#1e3a5f', '#3b82f6'],
@@ -34,6 +38,8 @@ function DesktopCard({ project, onClick }: { project: ProjectWithProfile; onClic
   const domain = getDomain(project.url)
   const isClaimed = !!project.owner_id
   const isUnavailable = !project.is_active
+  const [imgFailed, setImgFailed] = useState(false)
+  const screenshotUrl = project.screenshot_url || getScreenshotUrl(project.url)
 
   return (
     <div
@@ -49,8 +55,13 @@ function DesktopCard({ project, onClick }: { project: ProjectWithProfile; onClic
         className="h-[110px] flex items-center justify-center relative overflow-hidden"
         style={{ background: `linear-gradient(135deg, ${bg} 0%, ${bg}88 100%)` }}
       >
-        {project.screenshot_url ? (
-          <img src={project.screenshot_url} alt={project.name} className="w-full h-full object-cover" />
+        {!imgFailed ? (
+          <img
+            src={screenshotUrl}
+            alt={project.name}
+            className="w-full h-full object-cover object-top"
+            onError={() => setImgFailed(true)}
+          />
         ) : (
           <>
             <span className="text-3xl font-bold opacity-20 select-none" style={{ color: accent }}>
@@ -114,6 +125,8 @@ function MobileRow({ project, onClick }: { project: ProjectWithProfile; onClick:
   const domain = getDomain(project.url)
   const isClaimed = !!project.owner_id
   const isUnavailable = !project.is_active
+  const [imgFailed, setImgFailed] = useState(false)
+  const screenshotUrl = project.screenshot_url || getScreenshotUrl(project.url)
 
   return (
     <div
@@ -125,8 +138,13 @@ function MobileRow({ project, onClick }: { project: ProjectWithProfile; onClick:
         className="w-14 h-14 rounded-lg shrink-0 flex items-center justify-center overflow-hidden"
         style={{ background: `linear-gradient(135deg, ${bg}, ${bg}88)` }}
       >
-        {project.screenshot_url ? (
-          <img src={project.screenshot_url} alt={project.name} className="w-full h-full object-cover" />
+        {!imgFailed ? (
+          <img
+            src={screenshotUrl}
+            alt={project.name}
+            className="w-full h-full object-cover object-top"
+            onError={() => setImgFailed(true)}
+          />
         ) : (
           <span className="text-lg font-bold opacity-30" style={{ color: accent }}>
             {domain.slice(0, 2).toUpperCase()}
